@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ state.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ state.name }}</h1>
+<p><a href="{% url 'country_page' %}">{{ state.country.name }}</a></p>
+<ul class="list-group">
+    {% for item in county_city_data %}
+    <li class="list-group-item">
+        <a href="{{ item.county.get_absolute_url }}">{{ item.county.name }}</a>
+        <small>(Top cities: 
+        {% for city in item.top_cities %}
+            <a href="{{ city.get_absolute_url }}">{{ city.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        )</small>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

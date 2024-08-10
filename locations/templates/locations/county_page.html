@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ county.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ county.name }}</h1>
+<p><a href="{{ county.state.get_absolute_url }}">{{ county.state.name }}</a></p>
+<ul class="list-group">
+    {% for city in cities %}
+    <li class="list-group-item">
+        <a href="{{ city.get_absolute_url }}">{{ city.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
